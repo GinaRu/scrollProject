@@ -178,7 +178,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="textFieldDNI:" destination="Vjl-aK-mhM" eventType="editingDidEnd" id="uSu-du-Rhp"/>
+                                                    <action selector="textFieldDNI:" destination="Vjl-aK-mhM" eventType="editingChanged" id="9ZO-NG-Asa"/>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Choose your username and password:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sx-PQ-TaR">
