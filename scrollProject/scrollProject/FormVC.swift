@@ -12,16 +12,18 @@ class FormVC: UIViewController {
 
     
     @IBOutlet var scrollView: UIScrollView!
-    
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func textFieldDNI(_ sender: UITextField) {
         if let text = sender.text {
             registerButton.isEnabled = isValidID(text)
         }
     }
+    
+    @IBOutlet var textFieldDateBirth: UITextField!
+    
+    let datePicker = UIDatePicker()
     
     let abc = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"]
     
@@ -42,6 +44,45 @@ class FormVC: UIViewController {
         return false
     }
     
+    func setUpDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.sizeToFit() // Necessari perque aparegui.
+        
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.backgroundColor = .white
+        textFieldDateBirth.inputView = datePicker
+        
+        // Toolbar:
+        let toolBar = UIToolbar()
+
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+            toolBar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPicker))
+      
+
+            toolBar.setItems([ doneButton, spaceButton, cancelButton], animated: false)
+       
+        textFieldDateBirth.inputAccessoryView = toolBar
+ 
+    }
+    
+    @objc func donePicker() {
+        print("done pitjat")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+
+        textFieldDateBirth.text = dateFormatter.string(from: datePicker.date)
+              //  self.view.endEditing(true)
+        textFieldDateBirth.resignFirstResponder()
+    }
+    @objc func cancelPicker() {
+        print("cancel pitjat")
+        textFieldDateBirth.resignFirstResponder()
+    }
     
     
 //    func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -67,6 +108,7 @@ class FormVC: UIViewController {
         super.viewDidLoad()
         registerButton.isEnabled = false
         registerKeyboardNotifications()
+        setUpDatePicker()
         
     }
 
@@ -86,7 +128,7 @@ extension FormVC {
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
 
-                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
                 keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
         var newInset: UIEdgeInsets = self.scrollView.contentInset
