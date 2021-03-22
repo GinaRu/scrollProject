@@ -76,7 +76,7 @@ class FormVC: UIViewController {
         dateFormatter.dateStyle = .medium
 
         textFieldDateBirth.text = dateFormatter.string(from: datePicker.date)
-              //  self.view.endEditing(true)
+              //  self.view.endEditing(true) Això amaga el teclat tambè. 
         textFieldDateBirth.resignFirstResponder()
     }
     @objc func cancelPicker() {
