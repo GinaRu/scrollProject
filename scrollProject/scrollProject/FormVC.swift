@@ -10,6 +10,9 @@ import UIKit
 
 class FormVC: UIViewController {
 
+    
+    @IBOutlet var scrollView: UIScrollView!
+    
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -81,10 +84,22 @@ extension FormVC {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+
+                var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+                keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var newInset: UIEdgeInsets = self.scrollView.contentInset
+        newInset.bottom = keyboardFrame.size.height + 8
+        scrollView.contentInset = newInset
+        scrollView.scrollIndicatorInsets = newInset
         print("EL TECLADO APARECE")
+
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         print("EL TECLADO DESAPARECE")
     }
 

@@ -247,6 +247,7 @@
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="registerButton" destination="6Ze-cy-3sm" id="UUH-gc-8xA"/>
+                        <outlet property="scrollView" destination="UTY-Sl-1wQ" id="q7D-jI-m73"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewk-43-bzt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
