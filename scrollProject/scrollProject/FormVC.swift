@@ -59,10 +59,39 @@ class FormVC: UIViewController {
     @IBAction func registerTouched(_ sender: Any) {
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerButton.isEnabled = false
+        registerKeyboardNotifications()
+        
     }
 
+    deinit {
+        removeKeyboardNotifications()
+    }
 
+}
+
+extension FormVC {
+    
+    func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print("EL TECLADO APARECE")
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        print("EL TECLADO DESAPARECE")
+    }
+
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    // Aquesta funció és per si l'objecte que estem escoltant deixa d'existir. En un moment ens afegim com a observador i en aquest hi sortim perque ja no ens interessa.
+
+    }
 }
