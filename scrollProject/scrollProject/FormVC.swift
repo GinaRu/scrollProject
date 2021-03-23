@@ -11,7 +11,10 @@ import UIKit
 class FormVC: UIViewController {
 
     
+    @IBOutlet var textFieldDNIOutlet: UITextField!
+
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imageViewLogo: UIImageView!
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -22,6 +25,10 @@ class FormVC: UIViewController {
     }
     
     @IBOutlet var textFieldDateBirth: UITextField!
+    @IBOutlet var registerButton: UIButton!
+    @IBAction func registerTouched(_ sender: Any) {
+    }
+    
     
     let datePicker = UIDatePicker()
     
@@ -76,46 +83,29 @@ class FormVC: UIViewController {
         dateFormatter.dateStyle = .medium
 
         textFieldDateBirth.text = dateFormatter.string(from: datePicker.date)
-              //  self.view.endEditing(true) Això amaga el teclat tambè. 
+       
+              //  self.view.endEditing(true) Això amaga el teclat tambè.
         textFieldDateBirth.resignFirstResponder()
     }
     @objc func cancelPicker() {
         print("cancel pitjat")
+        if textFieldDateBirth.text != "" {
+            textFieldDateBirth.text = ""
+        }
         textFieldDateBirth.resignFirstResponder()
     }
-    
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        guard let lastLetter = textField.text?.last else { return }
-//
-//        if textField.text?.count == 9 && lastLetter.isLetter {
-//            registerButton.isEnabled = true
-//        } else {
-//            registerButton.isEnabled = false
-//        }
-////        if textField.text != "" {
-////            print(textField.text ?? "hey")
-////        }
-//    }
-    
-    @IBOutlet var registerButton: UIButton!
-    
-    @IBAction func registerTouched(_ sender: Any) {
-    }
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageViewLogo.image = UIImage(named: "logo")
         registerButton.isEnabled = false
+    
         registerKeyboardNotifications()
         setUpDatePicker()
-        
     }
-
     deinit {
         removeKeyboardNotifications()
     }
-
 }
 
 extension FormVC {
