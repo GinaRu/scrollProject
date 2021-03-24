@@ -23,7 +23,6 @@ class MapaVC: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         mapaView.delegate = self
-        
         checkLocationServices()
     }
     
