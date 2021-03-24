@@ -49,7 +49,7 @@
                                             <constraint firstAttribute="height" constant="45" id="b9C-a4-IIH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="101" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-oj-cIW">
                                         <rect key="frame" x="0.0" y="120" width="298" height="50"/>
@@ -92,6 +92,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XcT-wz-jJs"/>
                                     <segue destination="zgv-i0-u8m" kind="show" id="cfj-qM-g7R"/>
                                 </connections>
                             </button>
@@ -272,11 +273,27 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Hhl-p0-v0z">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mcn-AW-mIW">
+                                <rect key="frame" x="306" y="98" width="98" height="61.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow User?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fH2-BG-j3J">
+                                        <rect key="frame" x="0.0" y="0.0" width="98" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JrV-S0-ysa">
+                                        <rect key="frame" x="24.5" y="30.5" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="irU-w4-EDF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="irU-w4-EDF" firstAttribute="trailing" secondItem="Hhl-p0-v0z" secondAttribute="trailing" id="7kz-wX-kQz"/>
+                            <constraint firstItem="mcn-AW-mIW" firstAttribute="top" secondItem="irU-w4-EDF" secondAttribute="top" constant="10" id="VMn-BO-10P"/>
+                            <constraint firstItem="irU-w4-EDF" firstAttribute="trailing" secondItem="mcn-AW-mIW" secondAttribute="trailing" constant="10" id="XCO-Hy-nLH"/>
                             <constraint firstItem="irU-w4-EDF" firstAttribute="bottom" secondItem="Hhl-p0-v0z" secondAttribute="bottom" id="iyX-xv-X8z"/>
                             <constraint firstItem="Hhl-p0-v0z" firstAttribute="top" secondItem="irU-w4-EDF" secondAttribute="top" id="mM3-9O-3he"/>
                             <constraint firstItem="Hhl-p0-v0z" firstAttribute="leading" secondItem="irU-w4-EDF" secondAttribute="leading" id="ra7-T6-dyC"/>
