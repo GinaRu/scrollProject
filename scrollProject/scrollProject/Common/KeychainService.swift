@@ -9,6 +9,11 @@
 import Foundation
 import Security
 
+enum Key: String {
+    case pass
+    case user
+}
+
 // see https://stackoverflow.com/a/37539998/1694526
 // Arguments for the keychain queries
 let kSecClassValue = NSString(format: kSecClass)
@@ -22,11 +27,11 @@ let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
 class KeychainService: NSObject {
     
-    class func updateString(service: String, account:String, data: String) {
+    class func updateString(key: Key, account:String = "my_account", data: String) {
         if let dataFromString: Data = data.data(using: String.Encoding.utf8, allowLossyConversion: false) {
             
             // Instantiate a new default keychain query
-            let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, account], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue])
+            let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, key.rawValue, account], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue])
             
             let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueDataValue:dataFromString] as CFDictionary)
             
@@ -39,10 +44,10 @@ class KeychainService: NSObject {
     }
     
     
-    class func removeString(service: String, account:String) {
+    class func removeString(key: Key, account:String = "my_account") {
         
         // Instantiate a new default keychain query
-        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, account, kCFBooleanTrue], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue])
+        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, key.rawValue, account, kCFBooleanTrue], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue])
         
         // Delete any existing items
         let status = SecItemDelete(keychainQuery as CFDictionary)
@@ -54,11 +59,11 @@ class KeychainService: NSObject {
     }
     
     
-    class func saveString(service: String, account:String, data: String) {
+    class func saveString(key: Key, account:String = "my_account", data: String) {
         if let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) {
             
             // Instantiate a new default keychain query
-            let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, account, dataFromString], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue])
+            let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, key.rawValue, account, dataFromString], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecValueDataValue])
             
             // Add the new keychain item
             let status = SecItemAdd(keychainQuery as CFDictionary, nil)
@@ -71,11 +76,11 @@ class KeychainService: NSObject {
         }
     }
     
-    class func loadString(service: String, account:String) -> String? {
+    class func loadString(key: Key, account:String = "my_account") -> String? {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
-        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, account, kCFBooleanTrue, kSecMatchLimitOneValue], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue])
+        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, key.rawValue, account, kCFBooleanTrue, kSecMatchLimitOneValue], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue, kSecReturnDataValue, kSecMatchLimitValue])
         
         var dataTypeRef :AnyObject?
         
