@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FormVC: UIViewController {
+class FormVC: BaseVC {
 
     
     @IBOutlet var textFieldDNIOutlet: UITextField!
@@ -100,22 +100,15 @@ class FormVC: UIViewController {
         imageViewLogo.image = UIImage(named: "logo")
         registerButton.isEnabled = false
     
-        registerKeyboardNotifications()
         setUpDatePicker()
     }
-    deinit {
-        removeKeyboardNotifications()
-    }
-}
-
-extension FormVC {
     
-    func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc override func keyboardWillShow(notification: NSNotification) {
+        // Si volguessim que fes tambè el que fa la funció de BaseVC (ara no fa res però li podriem dir que fes algo), només hauriem de cridarla abans del que ve a continuació així:
+        // super.keyboardWillShow(notification: notification)
+        // Hem agafat el mateix paràmetre perquè realment és la mateixa funció, només que en aquest VC l'estem overriding. 
+        
+        
         guard let userInfo = notification.userInfo else { return }
 
                 var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -129,16 +122,11 @@ extension FormVC {
 
     }
 
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc override func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         print("EL TECLADO DESAPARECE")
     }
-
-    func removeKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    // Aquesta funció és per si l'objecte que estem escoltant deixa d'existir. En un moment ens afegim com a observador i en aquest hi sortim perque ja no ens interessa.
-
-    }
 }
+
+
