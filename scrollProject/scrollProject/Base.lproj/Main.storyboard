@@ -129,7 +129,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1112"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="96P-M0-eU6">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="899.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="898.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mw-kQ-ZCJ">
                                                 <rect key="frame" x="12" y="12" width="390" height="35"/>
@@ -198,19 +198,30 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j36-oS-Cpo">
-                                                <rect key="frame" x="12" y="698" width="390" height="40"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HA4-rb-k6o">
+                                                <rect key="frame" x="12" y="698" width="390" height="39"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j36-oS-Cpo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOk-sP-W62">
+                                                        <rect key="frame" x="0.0" y="39" width="390" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" red="0.19204076776649748" green="0.19204076776649748" blue="0.19204076776649748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" By continuing you indicate that you indicate that you agree to Terms of Service and acknowledge our Privacy Policy." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmT-66-XiX">
-                                                <rect key="frame" x="12" y="758" width="390" height="76.5"/>
+                                                <rect key="frame" x="12" y="757" width="390" height="76.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ze-cy-3sm">
-                                                <rect key="frame" x="12" y="854.5" width="390" height="33"/>
+                                                <rect key="frame" x="12" y="853.5" width="390" height="33"/>
                                                 <color key="backgroundColor" red="0.61912622989999999" green="0.90430678929999997" blue="0.65720291639999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <state key="normal" title="Register"/>
@@ -222,7 +233,6 @@
                                         <constraints>
                                             <constraint firstItem="VeM-dN-PUP" firstAttribute="height" secondItem="lF8-x3-M1R" secondAttribute="height" id="2zE-4K-8Hz"/>
                                             <constraint firstItem="hyx-bN-N8f" firstAttribute="height" secondItem="lF8-x3-M1R" secondAttribute="height" id="8s2-t9-7GL"/>
-                                            <constraint firstItem="j36-oS-Cpo" firstAttribute="height" secondItem="lF8-x3-M1R" secondAttribute="height" id="GnY-zc-7gg"/>
                                             <constraint firstItem="YJF-31-hOR" firstAttribute="height" secondItem="lF8-x3-M1R" secondAttribute="height" id="KJ9-2B-ClC"/>
                                             <constraint firstItem="4KY-JZ-fLz" firstAttribute="height" secondItem="lF8-x3-M1R" secondAttribute="height" id="v5H-ws-SBA"/>
                                         </constraints>
@@ -253,10 +263,12 @@
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="imageViewLogo" destination="XF8-JZ-poa" id="ZLz-ZN-gyh"/>
+                        <outlet property="labelPassword" destination="iOk-sP-W62" id="VGG-Aw-V3a"/>
                         <outlet property="registerButton" destination="6Ze-cy-3sm" id="UUH-gc-8xA"/>
                         <outlet property="scrollView" destination="UTY-Sl-1wQ" id="q7D-jI-m73"/>
                         <outlet property="textFieldDNIOutlet" destination="4KY-JZ-fLz" id="Wi0-SU-pcb"/>
                         <outlet property="textFieldDateBirth" destination="hyx-bN-N8f" id="2dZ-NH-vrS"/>
+                        <outlet property="textFieldPassword" destination="j36-oS-Cpo" id="Qoo-Ah-Rjs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewk-43-bzt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

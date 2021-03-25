@@ -10,6 +10,8 @@ import UIKit
 
 class FormVC: BaseVC {
 
+    @IBOutlet var textFieldPassword: UITextField!
+    @IBOutlet var labelPassword: UILabel!
     
     @IBOutlet var textFieldDNIOutlet: UITextField!
 
@@ -27,10 +29,52 @@ class FormVC: BaseVC {
     @IBOutlet var textFieldDateBirth: UITextField!
     @IBOutlet var registerButton: UIButton!
     @IBAction func registerTouched(_ sender: Any) {
+        guard let password = textFieldPassword.text else { return }
+        let (isValid, errorMessage) = isValidPassword(password: password)
+        if isValid == true {
+            labelPassword.text = errorMessage
+            labelPassword.textColor = .green
+        } else if isValid == false {
+            labelPassword.text = errorMessage
+            labelPassword.textColor = .red
+        }
+        // if passwordisValid() = true
+        // label: "password correcte" (en verd)
+        // else if passwordisValid() = false:
+        // altre funció.
+        // label: "The password must contain a capital letter.
     }
     
     
     let datePicker = UIDatePicker()
+    
+    
+    
+    func isValidPassword (password: String) -> (Bool, String) {
+        var resultMessage = ""
+        var isValid = true
+  
+        if password.count < 6 {
+            resultMessage += "Too short. Must contain 6 characters. "
+            isValid = false
+        }
+        if password.rangeOfCharacter(from: CharacterSet.alphanumerics) == nil {
+            resultMessage += "Must contain one number."
+            isValid = false
+        }
+        if password.rangeOfCharacter(from: CharacterSet.uppercaseLetters) == nil {
+            resultMessage += "Must contain one uppercase letter. "
+            isValid = false
+        }
+        if password.rangeOfCharacter(from: CharacterSet.symbols) == nil {
+            resultMessage += "Must contain one symbol. "
+            isValid = false
+        } else {
+            resultMessage = "Congratulations! Your password is safe enought."
+            isValid = true
+        }
+        return (isValid, resultMessage)
+    }
     
     let abc = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"]
     
@@ -106,7 +150,7 @@ class FormVC: BaseVC {
     @objc override func keyboardWillShow(notification: NSNotification) {
         // Si volguessim que fes tambè el que fa la funció de BaseVC (ara no fa res però li podriem dir que fes algo), només hauriem de cridarla abans del que ve a continuació així:
         // super.keyboardWillShow(notification: notification)
-        // Hem agafat el mateix paràmetre perquè realment és la mateixa funció, només que en aquest VC l'estem overriding. 
+        // Hem agafat el mateix paràmetre perquè realment és la mateixa funció, només que en aquest VC l'estem overriding.
         
         
         guard let userInfo = notification.userInfo else { return }
