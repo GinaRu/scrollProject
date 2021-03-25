@@ -49,7 +49,7 @@
                                             <constraint firstAttribute="height" constant="45" id="b9C-a4-IIH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="101" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-oj-cIW">
                                         <rect key="frame" x="0.0" y="120" width="298" height="50"/>
@@ -81,7 +81,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-B4-fkN">
-                                <rect key="frame" x="157" y="802" width="100" height="30"/>
+                                <rect key="frame" x="157" y="826" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.57327991773554199" green="0.90430678934010156" blue="0.63731792765471629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="G2h-am-Oso"/>
@@ -98,16 +98,17 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="1" green="0.75488874582407428" blue="0.42908624296058528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.68154543312520466" blue="0.50098581196897785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rtp-DB-G1B" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0GX-dG-nor"/>
                             <constraint firstItem="rtp-DB-G1B" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="H6r-C4-rav"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YRO-B4-fkN" secondAttribute="bottom" constant="30" id="QHI-Ek-zFg"/>
+                            <constraint firstAttribute="bottom" secondItem="YRO-B4-fkN" secondAttribute="bottom" constant="40" id="k4M-Hz-tEz"/>
                             <constraint firstItem="YRO-B4-fkN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lbC-nI-Ch9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xrc-Cx-9vB"/>
                     <connections>
+                        <outlet property="constraintLogin" destination="k4M-Hz-tEz" id="cS9-7K-Wa9"/>
                         <outlet property="passwordTextfield" destination="oe8-6U-dPr" id="q7e-My-DBV"/>
                         <outlet property="userTextField" destination="wM2-Sz-4W3" id="SD9-O9-md3"/>
                     </connections>
