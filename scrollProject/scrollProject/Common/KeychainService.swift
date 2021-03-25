@@ -10,8 +10,8 @@ import Foundation
 import Security
 
 enum Key: String {
-    case pass
-    case user
+    case password
+    case username
 }
 
 // see https://stackoverflow.com/a/37539998/1694526
@@ -43,6 +43,7 @@ class KeychainService: NSObject {
         }
     }
     
+    // En el següent cas li hem donat un valor per defecte a account, tot i que podriem crear la constant account a dintre i eliminar el paràmetre i relacionar-ho amb el paràmetre key (que és l'únic que hi ha ara).
     
     class func removeString(key: Key, account:String = "my_account") {
         
@@ -57,7 +58,6 @@ class KeychainService: NSObject {
             }
         }
     }
-    
     
     class func saveString(key: Key, account:String = "my_account", data: String) {
         if let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) {

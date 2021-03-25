@@ -31,18 +31,18 @@ class LoginVC: UIViewController {
     
     func saveUsernameAndPassword() {
         if let username = userTextField.text {
-            KeychainService.removeString(key: .user)
-            KeychainService.saveString(key: .user, data: username)
+            KeychainService.removeString(key: .username)
+            KeychainService.saveString(key: .username, data: username)
         }
         if let password = passwordTextfield.text {
-            KeychainService.removeString(key: .pass)
-            KeychainService.saveString(key: .pass, data: password)
+            KeychainService.removeString(key: .password)
+            KeychainService.saveString(key: .password, data: password)
         }
     }
     
     func LoadUsernameAndPassword () {
-        let password = KeychainService.loadString(key: .pass)
-        let username = KeychainService.loadString(key: .user)
+        let password = KeychainService.loadString(key: .password)
+        let username = KeychainService.loadString(key: .username)
         userTextField.text = username
         passwordTextfield.text = password
     }
