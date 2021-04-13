@@ -18,8 +18,6 @@ class LoginVC: BaseVC {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-//        userTextField.resignFirstResponder()
-//        passwordTextfield.resignFirstResponder()
         // Si fem el següent, ordenem a la view que acabi la edició de tots els seus components, cosa que fa que s'amagui el teclat:
         self.view.endEditing(true)
     }
@@ -71,9 +69,7 @@ class LoginVC: BaseVC {
                                     self.constraintLogin.constant = keyboardFrame.size.height + 8
                                     self.view.layoutIfNeeded()
                     }, completion: nil)
-        
 
-        print("EL TECLADO APARECE: \(keyboardFrame.size.height)")
 
     }
     
@@ -92,8 +88,6 @@ class LoginVC: BaseVC {
                                 self.view.layoutIfNeeded()
                 }, completion: nil)
         
-
-        print("EL TECLADO DESAPARECE")
     }
 }
 
